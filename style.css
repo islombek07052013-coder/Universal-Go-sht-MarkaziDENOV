@@ -127,6 +127,30 @@ body {
 }
 .nav-links a:hover { color: var(--accent-gold); }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.status-pill {
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.status-pill.open {
+  background: rgba(74, 222, 128, 0.14);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.35);
+}
+.status-pill.closed {
+  background: rgba(248, 113, 113, 0.14);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+}
+
 .btn-cart {
   background: linear-gradient(135deg, var(--accent-gold), #c28e38);
   color: #0d0808;
@@ -218,6 +242,7 @@ body {
   background: linear-gradient(135deg, var(--accent-gold), #c28e38);
   color: #0d0808;
 }
+.btn-gold:hover { transform: translateY(-1px); }
 .btn-outline {
   background: rgba(255,255,255,0.06);
   color: #fff;
@@ -610,7 +635,6 @@ body {
   white-space: nowrap;
 }
 
-/* Planshet va Telefon ko'rinishi */
 @media (max-width: 900px) {
   .products-grid,
   .reviews-compact-grid,
@@ -622,6 +646,7 @@ body {
 
 @media (max-width: 768px) {
   .nav-links { display: none; }
+  .status-pill { display: none; }
   .brand-title { font-size: 0.92rem; }
   .brand-sub { font-size: 0.58rem; letter-spacing: 1px; }
   .btn-cart { padding: 8px 11px; font-size: 0.82rem; }
