@@ -13,6 +13,17 @@
 </head>
 <body>
 
+  <!-- Yuqori Aksiya Lentasi -->
+  <div class="promo-top-bar">
+    <div class="container promo-bar-inner">
+      <span id="promoBannerText">🔥 AKSIYA: Bugun 5 kg dan ortiq xaridlarga yetkazib berish BEPUL!</span>
+      <div class="promo-timer">
+        <span>Tugashiga:</span>
+        <strong id="countdownClock">04:59:59</strong>
+      </div>
+    </div>
+  </div>
+
   <!-- Navigatsiya -->
   <header class="navbar">
     <div class="container nav-inner">
@@ -25,9 +36,11 @@
       </a>
 
       <nav class="nav-links">
+        <a href="#fresh-passport">Bugungi kirim</a>
         <a href="#catalog">Mahsulotlar</a>
-        <a href="#features">Afzalliklar</a>
-        <a href="#contact">Aloqa</a>
+        <a href="#reviews">Sharhlar</a>
+        <a href="#faq">Savol-javob</a>
+        <a href="#contact">Manzil</a>
       </nav>
 
       <div class="nav-actions">
@@ -38,7 +51,7 @@
     </div>
   </header>
 
-  <!-- Asosiy Qism (Hero) -->
+  <!-- Asosiy Ekran (Hero) -->
   <section class="hero" id="top">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
@@ -53,9 +66,36 @@
       </div>
 
       <div class="hero-stats">
-        <div class="stat-item"><strong>07:00 – 22:00</strong><span>Ish vaqti</span></div>
+        <div class="stat-item"><strong>07:00 – 22:00</strong><span>Har kuni ochiq</span></div>
         <div class="stat-item"><strong>30-45 daq</strong><span>Tezkor yetkazish</span></div>
-        <div class="stat-item"><strong>100%</strong><span>Sifat va Halollik</span></div>
+        <div class="stat-item"><strong>Click / Payme / Naqd</strong><span>Qulay to'lov</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bugungi Yangi Kirim / Sifat Pasporti -->
+  <section class="passport-section" id="fresh-passport">
+    <div class="container">
+      <div class="passport-card">
+        <div class="passport-badge">🟢 BUGUNGI YANGI KIRIM</div>
+        <div class="passport-grid">
+          <div class="p-item">
+            <span class="p-label">So'yilgan vaqti</span>
+            <strong id="passTime">Bugun, soat 05:30 da</strong>
+          </div>
+          <div class="p-item">
+            <span class="p-label">Mahsulot kelib chiqishi</span>
+            <strong id="passOrigin">Mahalliy yaylov boqma moli</strong>
+          </div>
+          <div class="p-item">
+            <span class="p-label">Sifat nazorati</span>
+            <strong id="passVet">✅ Veterinariya ko'rigidan o'tgan</strong>
+          </div>
+          <div class="p-item">
+            <span class="p-label">Saqlash sharoiti</span>
+            <strong>❄️ +2°C maxsus sovutkichda</strong>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -90,6 +130,10 @@
   <!-- Afzalliklar -->
   <section class="features-section" id="features">
     <div class="container">
+      <div class="section-head">
+        <span class="sub-label">NEGA AYNAN BIZ?</span>
+        <h2>Xizmatimiz Afzalliklari</h2>
+      </div>
       <div class="features-grid">
         <div class="feature-card">
           <div class="f-icon">🔪</div>
@@ -97,9 +141,9 @@
           <p>Osh, shashlik, qozonkabob yoki sho'rva uchun xohlagan o'lchamingizda tozalab, chiroyli bo'laklab beramiz.</p>
         </div>
         <div class="feature-card">
-          <div class="f-icon">❄️</div>
-          <h3>Gigiyena va Muzlatkich nazorati</h3>
-          <p>Barcha mahsulotlar maxsus haroratda saqlanadi. Pishirilmagan, yangi va toza holda qadoqlanadi.</p>
+          <div class="f-icon">⚖️</div>
+          <h3>Aniq elektron tarozi</h3>
+          <p>Har bir buyurtma elektron tarozida aniq o'lchanadi va toza oziq-ovqat qadoqlariga joylanadi.</p>
         </div>
         <div class="feature-card">
           <div class="f-icon">🚚</div>
@@ -110,30 +154,99 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer" id="contact">
-    <div class="container footer-inner">
-      <div>
-        <div class="brand" style="margin-bottom: 12px;">
-          <div class="brand-icon">🥩</div>
-          <div>
-            <span class="brand-title">UNIVERSAL</span>
-            <span class="brand-sub">GO'SHT MARKAZI</span>
-          </div>
-        </div>
-        <p class="footer-desc">Har kuni yangi, halol va sarxil go'sht mahsulotlari markazi.</p>
+  <!-- Mijozlar Fikri -->
+  <section class="reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-head">
+        <span class="sub-label">DOIMIY MIJOZLARIMIZ</span>
+        <h2>Xaridorlar Fikri va Baholari</h2>
       </div>
-      <div class="footer-info">
-        <p>📍 <strong>Manzil:</strong> Markaziy ko'cha, Universal Go'sht Markazi</p>
-        <p>📞 <strong>Telefon:</strong> <a href="tel:+998901234567">+998 90 123 45 67</a></p>
-        <p>🕒 <strong>Ish vaqti:</strong> Har kuni 07:00 dan 22:00 gacha</p>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"Lahm go'shtlari juda yumshoq va yangi ekan. Taomga moslab chiroyli qilib to'g'rab berishdi, rahmat!"</p>
+          <div class="reviewer">— Jamshid K., doimiy mijoz</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"Xom qazi va jigarlarini doim shu yerdan olamiz. Toza, hidsiz va narxlari ham bozor bilan bir xil."</p>
+          <div class="reviewer">— Dilnoza M., uy bekasi</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"Sayt orqali baliq va marinadlangan shashlik buyurtma qildik, 35 daqiqada uyimizga olib kelib berishdi."</p>
+          <div class="reviewer">— Sardor T., mahalla aholisi</div>
+        </div>
       </div>
     </div>
+  </section>
+
+  <!-- Ko'p Beriladigan Savollar (FAQ) -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <span class="sub-label">MA'LUMOTLAR</span>
+        <h2>Ko'p Beriladigan Savollar</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>Go'shtni taomga moslab to'g'rab berasizlarmi?</summary>
+          <p>Ha, albatta! Buyurtma berishda izoh qismiga yozsangiz (masalan: "oshga", "qozonkabobga" yoki "qiymalab bering"), qassoblarimiz bepul tayyorlab berishadi.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Mahsulotlar pishirilganmi yoki xom holatdami?</summary>
+          <p>Do'konimizdagi barcha mahsulotlar — go'sht, tovuq, baliq, kalla-pocha va marinadlangan kalapochalar faqat yangi, pishirilmagan (xom) holatda sotiladi.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Yetkazib berish xizmati qanday ishlaydi?</summary>
+          <p>Buyurtmangiz tasdiqlangach, 30–45 daqiqa ichida kuryerimiz manzilingizga yetkazib beradi. 5 kg dan ortiq xaridlarga yetkazib berish mutlaqo bepul.</p>
+        </details>
+        <details class="faq-item">
+          <summary>To'lovni karta orqali qilsa bo'ladimi?</summary>
+          <p>Ha, naqd pul hamda Click, Payme va barcha bank kartalari orqali to'lov qabul qilinadi.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Manzil va Xarita -->
+  <section class="location-section" id="contact">
+    <div class="container location-grid">
+      <div class="location-info">
+        <span class="sub-label">BIZNING MANZIL</span>
+        <h2>Universal Go'sht Markazi</h2>
+        <p class="loc-desc">Har kuni ertalabdan kechgacha yangi so'yilgan, sarxil va halol go'sht mahsulotlari bilan xizmatingizdamiz.</p>
+        <div class="loc-details">
+          <p>📍 <strong>Manzil:</strong> Markaziy ko'cha, Universal Go'sht Markazi</p>
+          <p>📞 <strong>Telefon:</strong> <a href="tel:+998901234567">+998 90 123 45 67</a></p>
+          <p>🕒 <strong>Ish vaqti:</strong> Har kuni 07:00 – 22:00</p>
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
+          <a href="https://maps.google.com" target="_blank" class="btn btn-gold">🗺️ Xaritada ochish</a>
+          <a href="tel:+998901234567" class="btn btn-outline">📞 Qo'ng'iroq qilish</a>
+        </div>
+      </div>
+
+      <div class="map-box">
+        <iframe
+          title="Do'kon xaritasi"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=67.8900%2C38.2600%2C67.9100%2C38.2750&layer=mapnik"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
     <div class="footer-bottom">
       <p>&copy; 2026 Universal Go'sht Markazi. Barcha huquqlar himoyalangan.</p>
       <p class="dev-credit">Dasturchi: Islom Xikmatullayev</p>
     </div>
   </footer>
+
+  <!-- Suzib turuvchi tezkor aloqa tugmasi -->
+  <a href="tel:+998901234567" class="floating-call" title="Qo'ng'iroq qilish">📞</a>
 
   <!-- SAVATCHA MODALI -->
   <div id="cartModal" class="modal-backdrop" hidden>
