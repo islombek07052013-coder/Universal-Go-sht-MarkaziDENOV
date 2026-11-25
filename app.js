@@ -18,7 +18,7 @@ const DEFAULT_PRODUCTS = [
     unit: "kg",
     inStock: true,
     img: "https://images.unsplash.com/photo-1602470520998-f4a52199a3d6?auto=format&fit=crop&w=700&q=80",
-    desc: "Osh va qozonkabob uchun saralangan yangi qo'y go'shti."
+    desc: "Taom va qozonkabob uchun saralangan yangi qo'y go'shti."
   },
   {
     id: 3,
@@ -58,7 +58,7 @@ const DEFAULT_PRODUCTS = [
     unit: "kg",
     inStock: true,
     img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=700&q=80",
-    desc: "Tirik va yangi tutilgan sazan balig'i, tozalab beriladi."
+    desc: "Yangi tutilgan sazan balig'i, tozalab beriladi."
   },
   {
     id: 7,
@@ -277,7 +277,6 @@ function submitOrder(e) {
 
   const msg = `🥩 *YANGI BUYURTMA (Universal Go'sht Markazi)*%0A%0A👤 *Mijoz:* ${name}%0A📞 *Tel:* ${phone}%0A🚚 *Usul:* ${delivery}%0A📍 *Manzil:* ${address || "Ko'rsatilmagan"}%0A📝 *Izoh:* ${note || "Yo'q"}%0A%0A🛒 *Mahsulotlar:*%0A${itemsText}%0A%0A💰 *Jami summa:* ${total.toLocaleString("uz-UZ")} so'm`;
 
-  // Do'kon egasining Telegramiga to'g'ridan-to'g'ri yuborish (username o'rniga do'kon Telegramini qo'yish mumkin)
   window.open(`https://t.me/share/url?url=&text=${msg}`, "_blank");
 
   cart = [];
@@ -287,7 +286,24 @@ function submitOrder(e) {
   alert("Buyurtmangiz tayyorlandi! Tez orada operatorimiz bog'lanadi.");
 }
 
+// Jonli Aksiya Taymeri
+function startPromoTimer() {
+  const clock = document.getElementById("countdownClock");
+  if (!clock) return;
+
+  let secondsLeft = 4 * 3600 + 59 * 60 + 59;
+  setInterval(() => {
+    if (secondsLeft <= 0) secondsLeft = 5 * 3600;
+    secondsLeft--;
+    const h = String(Math.floor(secondsLeft / 3600)).padStart(2, "0");
+    const m = String(Math.floor((secondsLeft % 3600) / 60)).padStart(2, "0");
+    const s = String(secondsLeft % 60).padStart(2, "0");
+    clock.innerText = `${h}:${m}:${s}`;
+  }, 1000);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderProducts();
   updateCartBadge();
+  startPromoTimer();
 });
