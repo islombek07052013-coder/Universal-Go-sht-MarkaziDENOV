@@ -13,10 +13,10 @@
 </head>
 <body>
 
-  <!-- Yuqori Aksiya Lentasi -->
+  <!-- Aksiya Lentasi -->
   <div class="promo-top-bar">
     <div class="container promo-bar-inner">
-      <span id="promoBannerText">🔥 AKSIYA: Bugun 5 kg dan ortiq xaridlarga yetkazib berish BEPUL!</span>
+      <span>🔥 AKSIYA: Bugun 5 kg dan ortiq xaridlarga yetkazib berish BEPUL!</span>
       <div class="promo-timer">
         <span>Tugashiga:</span>
         <strong id="countdownClock">04:59:59</strong>
@@ -38,63 +38,52 @@
       <nav class="nav-links">
         <a href="#fresh-passport">Bugungi kirim</a>
         <a href="#catalog">Mahsulotlar</a>
-        <a href="#reviews">Sharhlar</a>
-        <a href="#faq">Savol-javob</a>
+        <a href="#reviews">Baholar</a>
+        <a href="#faq">Savollar</a>
         <a href="#contact">Manzil</a>
       </nav>
 
-      <div class="nav-actions">
-        <button type="button" class="btn-cart" onclick="openCart()">
-          🛒 <span>Savatcha</span> <span id="cartCount" class="badge">0</span>
-        </button>
-      </div>
+      <button type="button" class="btn-cart" onclick="openCart()">
+        🛒 <span>Savatcha</span> <span id="cartCount" class="badge">0</span>
+      </button>
     </div>
   </header>
 
-  <!-- Asosiy Ekran (Hero) -->
+  <!-- Asosiy Ekran -->
   <section class="hero" id="top">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="container hero-content">
       <div class="halal-pill">✨ 100% HALOL • HAR KUNI YANGI SO'YILGAN</div>
       <h1>Eng sara va yangi<br><span class="gold-text">go'sht mahsulotlari</span></h1>
-      <p>Mol va qo'y go'shti, xom tovuq, yangi baliq, alohida ajratilgan kalla-pocha va pishirishga tayyor kalapochalar — buyurtmangizga qarab bo'laklab, uyingizgacha yetkazib beramiz.</p>
+      <p>Mol va qo'y go'shti, xom tovuq, yangi baliq, alohida kalla-pocha (oyoq, jigar, qazi) va pishirishga tayyor kalapochalar — taomingizga qarab to'g'rab, yetkazib beramiz.</p>
       
       <div class="hero-btns">
         <a href="#catalog" class="btn btn-gold">Katalogni ko'rish ↓</a>
-        <a href="tel:+998901234567" class="btn btn-outline">📞 Tez qo'ng'iroq</a>
+        <a href="tel:+998901234567" class="btn btn-outline">📞 Qo'ng'iroq</a>
       </div>
 
       <div class="hero-stats">
-        <div class="stat-item"><strong>07:00 – 22:00</strong><span>Har kuni ochiq</span></div>
-        <div class="stat-item"><strong>30-45 daq</strong><span>Tezkor yetkazish</span></div>
-        <div class="stat-item"><strong>Click / Payme / Naqd</strong><span>Qulay to'lov</span></div>
+        <div class="stat-item"><strong>07:00 – 22:00</strong><span>Ish vaqti</span></div>
+        <div class="stat-item"><strong>30-45 daq</strong><span>Yetkazish</span></div>
+        <div class="stat-item"><strong id="avgRatingStat">★ 4.9 / 5</strong><span>Xaridorlar bahosi</span></div>
       </div>
     </div>
   </section>
 
-  <!-- Bugungi Yangi Kirim / Sifat Pasporti -->
-  <section class="passport-section" id="fresh-passport">
+  <!-- Bugungi Kirim / Sifat Pasporti -->
+  <section class="compact-section" id="fresh-passport">
     <div class="container">
       <div class="passport-card">
-        <div class="passport-badge">🟢 BUGUNGI YANGI KIRIM</div>
+        <div class="passport-top">
+          <span class="passport-badge">🟢 BUGUNGI YANGI KIRIM</span>
+          <span class="passport-cert">🛡️ Veterinariya &amp; Halol nazorati</span>
+        </div>
         <div class="passport-grid">
-          <div class="p-item">
-            <span class="p-label">So'yilgan vaqti</span>
-            <strong id="passTime">Bugun, soat 05:30 da</strong>
-          </div>
-          <div class="p-item">
-            <span class="p-label">Mahsulot kelib chiqishi</span>
-            <strong id="passOrigin">Mahalliy yaylov boqma moli</strong>
-          </div>
-          <div class="p-item">
-            <span class="p-label">Sifat nazorati</span>
-            <strong id="passVet">✅ Veterinariya ko'rigidan o'tgan</strong>
-          </div>
-          <div class="p-item">
-            <span class="p-label">Saqlash sharoiti</span>
-            <strong>❄️ +2°C maxsus sovutkichda</strong>
-          </div>
+          <div class="p-item"><span>So'yilgan vaqt</span><strong>Bugun, 05:30</strong></div>
+          <div class="p-item"><span>Manba</span><strong>Yaylov boqma moli</strong></div>
+          <div class="p-item"><span>Harorat</span><strong>+2°C sovutkich</strong></div>
+          <div class="p-item"><span>Holati</span><strong>Yangi, pishmagan (xom)</strong></div>
         </div>
       </div>
     </div>
@@ -104,129 +93,100 @@
   <section class="catalog-section" id="catalog">
     <div class="container">
       <div class="section-head">
-        <span class="sub-label">BIZNING ASSORTIMENT</span>
-        <h2>Go'sht va Mahsulotlar Katalogi</h2>
+        <span class="sub-label">ASSORTIMENT</span>
+        <h2>Go'sht va Mahsulotlar</h2>
       </div>
 
-      <!-- Qidiruv va Bo'limlar -->
       <div class="filter-bar">
-        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Qidirish (masalan: lahm, baliq, oyoq, jigar, qazi, tovuq)..." oninput="renderProducts()">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Qidirish: lahm, qo'y, tovuq, baliq, oyoq, jigar, qazi, shashlik..." oninput="renderProducts()">
         
         <div class="category-tabs">
           <button class="tab-btn active" onclick="setCategory('all', this)">Barchasi</button>
-          <button class="tab-btn" onclick="setCategory('gosht', this)">🥩 Mol va Qo'y go'shti</button>
+          <button class="tab-btn" onclick="setCategory('gosht', this)">🥩 Mol va Qo'y</button>
           <button class="tab-btn" onclick="setCategory('tovuq', this)">🍗 Tovuq (xom)</button>
           <button class="tab-btn" onclick="setCategory('baliq', this)">🐟 Baliqlar</button>
-          <button class="tab-btn" onclick="setCategory('kallapocha', this)">🦴 Kalla-pocha va qismlar</button>
-          <button class="tab-btn" onclick="setCategory('tayyor', this)">🔥 Pishirishga tayyor (kalapochalar)</button>
+          <button class="tab-btn" onclick="setCategory('kallapocha', this)">🦴 Kalla-pocha / Qismlar</button>
+          <button class="tab-btn" onclick="setCategory('tayyor', this)">🔥 Kalapochalar (xom)</button>
         </div>
       </div>
 
-      <!-- Mahsulotlar Kartochkalari -->
       <div class="products-grid" id="productsGrid"></div>
     </div>
   </section>
 
-  <!-- Afzalliklar -->
-  <section class="features-section" id="features">
+  <!-- Ixcham Baholash va Sharhlar -->
+  <section class="compact-section" id="reviews">
     <div class="container">
-      <div class="section-head">
-        <span class="sub-label">NEGA AYNAN BIZ?</span>
-        <h2>Xizmatimiz Afzalliklari</h2>
+      <div class="section-head compact-head">
+        <span class="sub-label">BUYURTMADAN KEYINGI BAHOLAR</span>
+        <h2>Xaridorlar Reytingi va Fikri</h2>
       </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="f-icon">🔪</div>
-          <h3>Buyurtmaga qarab bo'laklash</h3>
-          <p>Osh, shashlik, qozonkabob yoki sho'rva uchun xohlagan o'lchamingizda tozalab, chiroyli bo'laklab beramiz.</p>
+
+      <!-- Baho qoldirish formasi (xaridor buyurtmani olgach yulduz belgilaydi) -->
+      <form class="rating-box" onsubmit="addReview(event)">
+        <div class="rating-top">
+          <div>
+            <strong>Buyurtmani oldingizmi? Baho bering:</strong>
+            <div class="star-picker" id="starPicker" aria-label="Yulduz tanlash">
+              <button type="button" class="star-btn active" data-val="1" onclick="selectStar(1)">★</button>
+              <button type="button" class="star-btn active" data-val="2" onclick="selectStar(2)">★</button>
+              <button type="button" class="star-btn active" data-val="3" onclick="selectStar(3)">★</button>
+              <button type="button" class="star-btn active" data-val="4" onclick="selectStar(4)">★</button>
+              <button type="button" class="star-btn active" data-val="5" onclick="selectStar(5)">★</button>
+            </div>
+          </div>
+          <span id="selectedStarText" class="star-hint">5 ta yulduz — A'lo</span>
         </div>
-        <div class="feature-card">
-          <div class="f-icon">⚖️</div>
-          <h3>Aniq elektron tarozi</h3>
-          <p>Har bir buyurtma elektron tarozida aniq o'lchanadi va toza oziq-ovqat qadoqlariga joylanadi.</p>
+
+        <div class="rating-inputs">
+          <input type="text" id="revName" placeholder="Ismingiz" required>
+          <input type="text" id="revComment" placeholder="Qisqa fikringiz (masalan: go'sht yumshoq va yangi chiqdi)" required>
+          <button type="submit" class="btn btn-gold btn-sm">Baho berish</button>
         </div>
-        <div class="feature-card">
-          <div class="f-icon">🚚</div>
-          <h3>Mahalla bo'ylab tezkor yetkazish</h3>
-          <p>Sayt orqali kilo yoki donasini tanlab buyurtma bering — qisqa vaqtda eshigingizga yetkazamiz.</p>
-        </div>
-      </div>
+      </form>
+
+      <!-- Ixcham sharhlar qatori -->
+      <div class="reviews-compact-grid" id="reviewsList"></div>
     </div>
   </section>
 
-  <!-- Mijozlar Fikri -->
-  <section class="reviews-section" id="reviews">
+  <!-- Ixcham Savol-Javob -->
+  <section class="compact-section" id="faq">
     <div class="container">
-      <div class="section-head">
-        <span class="sub-label">DOIMIY MIJOZLARIMIZ</span>
-        <h2>Xaridorlar Fikri va Baholari</h2>
+      <div class="section-head compact-head">
+        <span class="sub-label">YORDAM</span>
+        <h2>Savol-Javob</h2>
       </div>
-      <div class="reviews-grid">
-        <div class="review-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p>"Lahm go'shtlari juda yumshoq va yangi ekan. Taomga moslab chiroyli qilib to'g'rab berishdi, rahmat!"</p>
-          <div class="reviewer">— Jamshid K., doimiy mijoz</div>
-        </div>
-        <div class="review-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p>"Xom qazi va jigarlarini doim shu yerdan olamiz. Toza, hidsiz va narxlari ham bozor bilan bir xil."</p>
-          <div class="reviewer">— Dilnoza M., uy bekasi</div>
-        </div>
-        <div class="review-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p>"Sayt orqali baliq va marinadlangan shashlik buyurtma qildik, 35 daqiqada uyimizga olib kelib berishdi."</p>
-          <div class="reviewer">— Sardor T., mahalla aholisi</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Ko'p Beriladigan Savollar (FAQ) -->
-  <section class="faq-section" id="faq">
-    <div class="container">
-      <div class="section-head">
-        <span class="sub-label">MA'LUMOTLAR</span>
-        <h2>Ko'p Beriladigan Savollar</h2>
-      </div>
-      <div class="faq-list">
-        <details class="faq-item" open>
-          <summary>Go'shtni taomga moslab to'g'rab berasizlarmi?</summary>
-          <p>Ha, albatta! Buyurtma berishda izoh qismiga yozsangiz (masalan: "oshga", "qozonkabobga" yoki "qiymalab bering"), qassoblarimiz bepul tayyorlab berishadi.</p>
+      <div class="faq-compact-grid">
+        <details class="faq-item">
+          <summary>Go'shtni qanday to'g'rab berasiz?</summary>
+          <p>Oshga, qozonkabobga, shashlikka yoki qiymalab — har bir mahsulot kartochkasidan o'zingiz tanlaysiz.</p>
         </details>
         <details class="faq-item">
-          <summary>Mahsulotlar pishirilganmi yoki xom holatdami?</summary>
-          <p>Do'konimizdagi barcha mahsulotlar — go'sht, tovuq, baliq, kalla-pocha va marinadlangan kalapochalar faqat yangi, pishirilmagan (xom) holatda sotiladi.</p>
+          <summary>Mahsulotlar pishmagan (xom)mi?</summary>
+          <p>Ha, barcha go'sht, tovuq, baliq, oyoq-jigar-qazi va kalapochalar yangi, pishirilmagan holatda sotiladi.</p>
         </details>
         <details class="faq-item">
-          <summary>Yetkazib berish xizmati qanday ishlaydi?</summary>
-          <p>Buyurtmangiz tasdiqlangach, 30–45 daqiqa ichida kuryerimiz manzilingizga yetkazib beradi. 5 kg dan ortiq xaridlarga yetkazib berish mutlaqo bepul.</p>
-        </details>
-        <details class="faq-item">
-          <summary>To'lovni karta orqali qilsa bo'ladimi?</summary>
-          <p>Ha, naqd pul hamda Click, Payme va barcha bank kartalari orqali to'lov qabul qilinadi.</p>
+          <summary>Yetkazish va to'lov qanday?</summary>
+          <p>30–45 daqiqada yetkazamiz (5 kg dan ko'pida tekin). Naqd yoki Click/Payme karta orqali to'lanadi.</p>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- Manzil va Xarita -->
-  <section class="location-section" id="contact">
-    <div class="container location-grid">
-      <div class="location-info">
-        <span class="sub-label">BIZNING MANZIL</span>
+  <!-- Ixcham Manzil va Xarita -->
+  <section class="compact-section" id="contact">
+    <div class="container location-compact">
+      <div>
+        <span class="sub-label">MANZIL</span>
         <h2>Universal Go'sht Markazi</h2>
-        <p class="loc-desc">Har kuni ertalabdan kechgacha yangi so'yilgan, sarxil va halol go'sht mahsulotlari bilan xizmatingizdamiz.</p>
-        <div class="loc-details">
-          <p>📍 <strong>Manzil:</strong> Markaziy ko'cha, Universal Go'sht Markazi</p>
-          <p>📞 <strong>Telefon:</strong> <a href="tel:+998901234567">+998 90 123 45 67</a></p>
-          <p>🕒 <strong>Ish vaqti:</strong> Har kuni 07:00 – 22:00</p>
-        </div>
-        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
-          <a href="https://maps.google.com" target="_blank" class="btn btn-gold">🗺️ Xaritada ochish</a>
-          <a href="tel:+998901234567" class="btn btn-outline">📞 Qo'ng'iroq qilish</a>
+        <p class="loc-line">📍 Markaziy ko'cha, Denov • 🕒 07:00 – 22:00</p>
+        <p class="loc-line">📞 <a href="tel:+998901234567">+998 90 123 45 67</a></p>
+        <div class="hero-btns" style="margin-top:14px; margin-bottom:0;">
+          <a href="https://maps.google.com" target="_blank" class="btn btn-gold btn-sm">🗺️ Xarita</a>
+          <a href="tel:+998901234567" class="btn btn-outline btn-sm">📞 Qo'ng'iroq</a>
         </div>
       </div>
-
       <div class="map-box">
         <iframe
           title="Do'kon xaritasi"
@@ -245,14 +205,11 @@
     </div>
   </footer>
 
-  <!-- Suzib turuvchi tezkor aloqa tugmasi -->
-  <a href="tel:+998901234567" class="floating-call" title="Qo'ng'iroq qilish">📞</a>
-
-  <!-- SAVATCHA MODALI -->
+  <!-- SAVATCHA VA BUYURTMA MODALI -->
   <div id="cartModal" class="modal-backdrop" hidden>
     <div class="modal-box">
       <div class="modal-header">
-        <h3>🛒 Sizning savatchangiz</h3>
+        <h3>🛒 Buyurtma rasmiylashtirish</h3>
         <button class="close-btn" onclick="closeCart()">&times;</button>
       </div>
       <div id="cartItems" class="cart-items-list"></div>
@@ -264,14 +221,42 @@
 
         <form id="orderForm" onsubmit="submitOrder(event)" class="order-form">
           <input type="text" id="custName" placeholder="Ismingiz" required>
-          <input type="tel" id="custPhone" placeholder="Telefon raqamingiz (+998...)" required>
-          <select id="deliveryType">
-            <option value="Yetkazib berish">🚚 Uyga yetkazib berish</option>
-            <option value="O'zim olib ketaman">🏪 Do'kondan o'zim olib ketaman</option>
+          <input type="tel" id="custPhone" placeholder="Telefon (+998...)" required>
+
+          <div class="two-col">
+            <select id="deliveryType" onchange="toggleAddressFields()">
+              <option value="Yetkazib berish">🚚 Yetkazib berish</option>
+              <option value="O'zim olib ketaman">🏪 Do'kondan olish</option>
+            </select>
+            <select id="paymentType">
+              <option value="Naqd">💵 Naqd pul</option>
+              <option value="Click / Payme karta">💳 Click / Payme</option>
+            </select>
+          </div>
+
+          <!-- Manzilni tanlash / belgilash bloki -->
+          <div id="addressBlock" class="address-box">
+            <div class="addr-row">
+              <select id="districtSelect" onchange="fillDistrictToInput()">
+                <option value="">📍 Mahalla / hududni tanlang...</option>
+                <option value="Markaziy ko'cha">Markaziy ko'cha</option>
+                <option value="Bog'ishamol mahallasi">Bog'ishamol mahallasi</option>
+                <option value="Shodlik mahallasi">Shodlik mahallasi</option>
+                <option value="Mustaqillik ko'chasi">Mustaqillik ko'chasi</option>
+              </select>
+              <button type="button" class="btn-gps" onclick="detectLocation()">🎯 Joylashuvim</button>
+            </div>
+            <input type="text" id="custAddress" placeholder="Ko'cha, uy raqami yoki mo'ljalni kiriting..." required>
+          </div>
+
+          <select id="deliveryTime">
+            <option value="Imkon qadar tez (30-45 daq)">⏱️ Imkon qadar tez (30–45 daq)</option>
+            <option value="Bugun kechqurun (18:00–20:00)">🌆 Bugun kechqurun (18:00–20:00)</option>
+            <option value="Ertaga ertalab (08:00–10:00)">🌅 Ertaga ertalab (08:00–10:00)</option>
           </select>
-          <input type="text" id="custAddress" placeholder="Manzilingiz yoki mo'ljal">
-          <textarea id="custNote" rows="2" placeholder="Izoh (masalan: oshga to'g'rab bering, yog'liroq bo'lsin...)"></textarea>
-          <button type="submit" class="btn btn-gold" style="width: 100%;">✅ Buyurtmani tasdiqlash</button>
+
+          <textarea id="custNote" rows="2" placeholder="Qo'shimcha izoh (ixtiyoriy)..."></textarea>
+          <button type="submit" class="btn btn-gold" style="width: 100%;">✅ Buyurtmani yuborish</button>
         </form>
       </div>
     </div>
