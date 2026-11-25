@@ -16,7 +16,7 @@
   <!-- Aksiya Lentasi -->
   <div class="promo-top-bar">
     <div class="container promo-bar-inner">
-      <span>🔥 AKSIYA: Bugun 5 kg dan ortiq xaridlarga yetkazib berish BEPUL!</span>
+      <span id="promoBannerText">🔥 AKSIYA: Bugun 5 kg dan ortiq xaridlarga yetkazib berish BEPUL!</span>
       <div class="promo-timer">
         <span>Tugashiga:</span>
         <strong id="countdownClock">04:59:59</strong>
@@ -43,9 +43,12 @@
         <a href="#contact">Manzil</a>
       </nav>
 
-      <button type="button" class="btn-cart" onclick="openCart()">
-        🛒 <span>Savatcha</span> <span id="cartCount" class="badge">0</span>
-      </button>
+      <div class="nav-right">
+        <span id="openStatusBadge" class="status-pill open">🟢 Hozir ochiq</span>
+        <button type="button" class="btn-cart" onclick="openCart()">
+          🛒 <span>Savatcha</span> <span id="cartCount" class="badge">0</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -61,6 +64,7 @@
       <div class="hero-btns">
         <a href="#catalog" class="btn btn-gold">Katalogni ko'rish ↓</a>
         <a href="tel:+998901234567" class="btn btn-outline">📞 Qo'ng'iroq</a>
+        <button type="button" id="repeatLastOrderBtn" class="btn btn-outline" hidden onclick="repeatLastOrder()">🔁 Oldingi buyurtmani takrorlash</button>
       </div>
 
       <div class="hero-stats">
@@ -80,8 +84,8 @@
           <span class="passport-cert">🛡️ Veterinariya &amp; Halol nazorati</span>
         </div>
         <div class="passport-grid">
-          <div class="p-item"><span>So'yilgan vaqt</span><strong>Bugun, 05:30</strong></div>
-          <div class="p-item"><span>Manba</span><strong>Yaylov boqma moli</strong></div>
+          <div class="p-item"><span>So'yilgan vaqt</span><strong id="passTime">Bugun, 05:30</strong></div>
+          <div class="p-item"><span>Manba</span><strong id="passOrigin">Yaylov boqma moli</strong></div>
           <div class="p-item"><span>Harorat</span><strong>+2°C sovutkich</strong></div>
           <div class="p-item"><span>Holati</span><strong>Yangi, pishmagan (xom)</strong></div>
         </div>
@@ -122,7 +126,6 @@
         <h2>Xaridorlar Reytingi va Fikri</h2>
       </div>
 
-      <!-- Baho qoldirish formasi (xaridor buyurtmani olgach yulduz belgilaydi) -->
       <form class="rating-box" onsubmit="addReview(event)">
         <div class="rating-top">
           <div>
@@ -145,7 +148,6 @@
         </div>
       </form>
 
-      <!-- Ixcham sharhlar qatori -->
       <div class="reviews-compact-grid" id="reviewsList"></div>
     </div>
   </section>
@@ -234,7 +236,6 @@
             </select>
           </div>
 
-          <!-- Manzilni tanlash / belgilash bloki -->
           <div id="addressBlock" class="address-box">
             <div class="addr-row">
               <select id="districtSelect" onchange="fillDistrictToInput()">
