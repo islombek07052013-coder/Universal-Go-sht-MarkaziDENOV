@@ -1,114 +1,22 @@
+// Supabase ulanish sozlamalari (Admin paneldagi bilan bir xil)
+const SUPABASE_URL = "https://sissxncuyhlwnnasikfi.supabase.co";
+const SUPABASE_KEY = "PUBLISHABLE_KEY_NI_SHU_YERGA_YOYING"; // Rasmdagi Publishable keyni qo'ying
+
+const LAST_CUSTOMER_KEY = "ugm_last_customer";
+const LAST_ORDER_ITEMS_KEY = "ugm_last_order_items";
+
 const DEFAULT_PRODUCTS = [
-  {
-    id: 1,
-    name: "Mol lahm go'shti (suyaksiz)",
-    category: "gosht",
-    price: 98000,
-    unit: "kg",
-    inStock: true,
-    img: "https://images.unsplash.com/photo-1603048297172-c92544798d5a?auto=format&fit=crop&w=700&q=80",
-    desc: "Yangi so'yilgan yosh buqa go'shti, yumshoq va suyaksiz."
-  },
-  {
-    id: 2,
-    name: "Qo'y go'shti (qovurg'a va son)",
-    category: "gosht",
-    price: 95000,
-    unit: "kg",
-    inStock: true,
-    img: "https://images.unsplash.com/photo-1602470520998-f4a52199a3d6?auto=format&fit=crop&w=700&q=80",
-    desc: "Taom va qozonkabob uchun saralangan yangi qo'y go'shti."
-  },
-  {
-    id: 3,
-    name: "Mol qiymasi (yog'li / yog'siz)",
-    category: "gosht",
-    price: 88000,
-    unit: "kg",
-    inStock: true,
-    img: "https://images.unsplash.com/photo-1588168333986-5078d3ae3976?auto=format&fit=crop&w=700&q=80",
-    desc: "Manti, somsa va kotletlar uchun yangi chiqarilgan qiyma."
-  },
-  {
-    id: 4,
-    name: "Butun broyler tovuq (xom)",
-    category: "tovuq",
-    price: 34000,
-    unit: "kg",
-    inStock: true,
-    img: "https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=700&q=80",
-    desc: "Tozalangan, pishirilmagan yangi xom broyler tovuq."
-  },
-  {
-    id: 5,
-    name: "Tovuq filesi va son qismi (xom)",
-    category: "tovuq",
-    price: 42000,
-    unit: "kg",
-    inStock: true,
-    img: "https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=700&q=80",
-    desc: "Suyaksiz tovuq ko'krak filesi va son go'shti."
-  },
-  {
-    id: 6,
-    name: "Yangi Sazan balig'i",
-    category: "baliq",
-    price: 48000,
-    unit: "kg",
-    inStock: true,
-    img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=700&q=80",
-    desc: "Yangi tutilgan sazan balig'i, tozalab beriladi."
-  },
-  {
-    id: 7,
-    name: "Mol oyog'i (xom, tozalangan)",
-    category: "kallapocha",
-    price: 28000,
-    unit: "dona",
-    inStock: true,
-    img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80",
-    desc: "Kuydirilgan, tozalangan va bo'laklangan alohida mol oyog'i."
-  },
-  {
-    id: 8,
-    name: "Mol jigari (yangi, xom)",
-    category: "kallapocha",
-    price: 55000,
-    unit: "kg",
-    inStock: true,
-    img: "https://images.unsplash.com/photo-1615937657715-bc7b4b7962c1?auto=format&fit=crop&w=700&q=80",
-    desc: "Yangi so'yilgan molning yumshoq jigari."
-  },
-  {
-    id: 9,
-    name: "Xom Qazi (bog'langan)",
-    category: "kallapocha",
-    price: 135000,
-    unit: "kg",
-    inStock: true,
-    img: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=700&q=80",
-    desc: "Ziravorlar bilan bog'langan, pishirishga tayyor xom qazi."
-  },
-  {
-    id: 10,
-    name: "Marinadlangan Shashlik (xom)",
-    category: "tayyor",
-    price: 92000,
-    unit: "kg",
-    inStock: true,
-    img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=700&q=80",
-    desc: "Ko'mirga qo'yishga tayyor marinadlangan xom jaz shashlik."
-  },
-  {
-    id: 11,
-    name: "Tovuq qanotchalari marinad (xom)",
-    category: "tayyor",
-    price: 45000,
-    unit: "kg",
-    inStock: true,
-    img: "https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=700&q=80",
-    desc: "Duxovka yoki mangalda pishirish uchun tayyor xom qanotchalar."
-  }
+  { id: 1, name: "Mol lahm go'shti (suyaksiz)", category: "gosht", price: 98000, unit: "kg", inStock: true, img: "https://images.unsplash.com/photo-1603048297172-c92544798d5a?auto=format&fit=crop&w=700&q=80", desc: "Yangi so'yilgan yosh buqa go'shti, yumshoq va suyaksiz." },
+  { id: 2, name: "Qo'y go'shti (qovurg'a va son)", category: "gosht", price: 95000, unit: "kg", inStock: true, img: "https://images.unsplash.com/photo-1602470520998-f4a52199a3d6?auto=format&fit=crop&w=700&q=80", desc: "Taom va qozonkabob uchun saralangan yangi qo'y go'shti." },
+  { id: 3, name: "Mol qiymasi (yog'li / yog'siz)", category: "gosht", price: 88000, unit: "kg", inStock: true, img: "https://images.unsplash.com/photo-1588168333986-5078d3ae3976?auto=format&fit=crop&w=700&q=80", desc: "Manti, somsa va kotletlar uchun yangi chiqarilgan qiyma." },
+  { id: 4, name: "Butun broyler tovuq (xom)", category: "tovuq", price: 34000, unit: "kg", inStock: true, img: "https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=700&q=80", desc: "Tozalangan, pishirilmagan yangi xom broyler tovuq." },
+  { id: 5, name: "Tovuq filesi va son qismi (xom)", category: "tovuq", price: 42000, unit: "kg", inStock: true, img: "https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=700&q=80", desc: "Suyaksiz tovuq ko'krak filesi va son go'shti." },
+  { id: 6, name: "Yangi Sazan balig'i", category: "baliq", price: 48000, unit: "kg", inStock: true, img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=700&q=80", desc: "Yangi tutilgan sazan balig'i, tozalab beriladi." },
+  { id: 7, name: "Mol oyog'i (xom, tozalangan)", category: "kallapocha", price: 28000, unit: "dona", inStock: true, img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80", desc: "Kuydirilgan, tozalangan va bo'laklangan alohida mol oyog'i." },
+  { id: 8, name: "Mol jigari (yangi, xom)", category: "kallapocha", price: 55000, unit: "kg", inStock: true, img: "https://images.unsplash.com/photo-1615937657715-bc7b4b7962c1?auto=format&fit=crop&w=700&q=80", desc: "Yangi so'yilgan molning yumshoq jigari." },
+  { id: 9, name: "Xom Qazi (bog'langan)", category: "kallapocha", price: 135000, unit: "kg", inStock: true, img: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=700&q=80", desc: "Ziravorlar bilan bog'langan, pishirishga tayyor xom qazi." },
+  { id: 10, name: "Marinadlangan Shashlik (xom)", category: "tayyor", price: 92000, unit: "kg", inStock: true, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=700&q=80", desc: "Ko'mirga qo'yishga tayyor marinadlangan xom jaz shashlik." },
+  { id: 11, name: "Tovuq qanotchalari marinad (xom)", category: "tayyor", price: 45000, unit: "kg", inStock: true, img: "https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=700&q=80", desc: "Duxovka yoki mangalda pishirish uchun tayyor xom qanotchalar." }
 ];
 
 const DEFAULT_REVIEWS = [
@@ -125,14 +33,107 @@ const CATEGORY_LABELS = {
   tayyor: "🔥 Kalapochalar"
 };
 
+let products = JSON.parse(localStorage.getItem("ugm_products") || "null") || DEFAULT_PRODUCTS;
 let currentCategory = "all";
 let selectedStars = 5;
 let cart = JSON.parse(localStorage.getItem("ugm_cart") || "[]");
 let reviews = JSON.parse(localStorage.getItem("ugm_reviews") || "null") || DEFAULT_REVIEWS;
 
-function getProducts() {
-  const saved = localStorage.getItem("ugm_products");
-  return saved ? JSON.parse(saved) : DEFAULT_PRODUCTS;
+function hasSupabase() {
+  return SUPABASE_URL.startsWith("https://") && SUPABASE_KEY && !SUPABASE_KEY.includes("SHU_YERGA");
+}
+
+function sbHeaders() {
+  return {
+    "apikey": SUPABASE_KEY,
+    "Authorization": `Bearer ${SUPABASE_KEY}`
+  };
+}
+
+async function fetchProductsAndSettingsFromSupabase() {
+  if (!hasSupabase()) return;
+  try {
+    const pRes = await fetch(`${SUPABASE_URL}/rest/v1/products?select=*&order=sort_order.asc,id.asc`, {
+      headers: sbHeaders()
+    });
+    if (pRes.ok) {
+      const rows = await pRes.json();
+      if (Array.isArray(rows) && rows.length > 0) {
+        products = rows.map(r => ({
+          id: Number(r.id),
+          name: r.name,
+          category: r.category,
+          price: Number(r.price),
+          unit: r.unit || "kg",
+          inStock: Boolean(r.in_stock),
+          img: r.img || "",
+          desc: r.desc || ""
+        }));
+        localStorage.setItem("ugm_products", JSON.stringify(products));
+        renderProducts();
+      }
+    }
+
+    const sRes = await fetch(`${SUPABASE_URL}/rest/v1/store_settings?id=eq.1&select=*`, {
+      headers: sbHeaders()
+    });
+    if (sRes.ok) {
+      const sRows = await sRes.json();
+      if (sRows && sRows[0]) {
+        const promoEl = document.getElementById("promoBannerText");
+        const timeEl = document.getElementById("passTime");
+        const origEl = document.getElementById("passOrigin");
+        if (promoEl && sRows[0].promo) promoEl.innerText = sRows[0].promo;
+        if (timeEl && sRows[0].cut_time) timeEl.innerText = sRows[0].cut_time;
+        if (origEl && sRows[0].origin) origEl.innerText = sRows[0].origin;
+      }
+    }
+  } catch (err) {
+    console.warn("Supabase ma'lumotlari yuklanmadi, lokal nusxa ishlatildi:", err);
+  }
+}
+
+// 4-band: Do'kon ochiq/yopiq holati (07:00 - 22:00)
+function updateOpenStatus() {
+  const badge = document.getElementById("openStatusBadge");
+  if (!badge) return;
+  const hour = new Date().getHours();
+  const isOpen = hour >= 7 && hour < 22;
+  badge.classList.toggle("open", isOpen);
+  badge.classList.toggle("closed", !isOpen);
+  badge.innerText = isOpen ? "🟢 Hozir ochiq" : "🔴 Hozir yopiq";
+}
+
+// 3-band: Oxirgi buyurtma ma'lumotlarini eslab qolish va takrorlash
+function prefillCustomerInfo() {
+  const saved = JSON.parse(localStorage.getItem(LAST_CUSTOMER_KEY) || "null");
+  if (!saved) return;
+  const n = document.getElementById("custName");
+  const p = document.getElementById("custPhone");
+  const d = document.getElementById("deliveryType");
+  const pay = document.getElementById("paymentType");
+  const addr = document.getElementById("custAddress");
+  if (n && saved.name) n.value = saved.name;
+  if (p && saved.phone) p.value = saved.phone;
+  if (d && saved.delivery) d.value = saved.delivery;
+  if (pay && saved.payment) pay.value = saved.payment;
+  if (addr && saved.address) addr.value = saved.address;
+  toggleAddressFields();
+}
+
+function updateRepeatOrderButton() {
+  const btn = document.getElementById("repeatLastOrderBtn");
+  const lastItems = JSON.parse(localStorage.getItem(LAST_ORDER_ITEMS_KEY) || "null");
+  if (btn) btn.hidden = !(Array.isArray(lastItems) && lastItems.length > 0);
+}
+
+function repeatLastOrder() {
+  const lastItems = JSON.parse(localStorage.getItem(LAST_ORDER_ITEMS_KEY) || "null");
+  if (!Array.isArray(lastItems) || lastItems.length === 0) return;
+  cart = [...lastItems];
+  saveCart();
+  updateCartBadge();
+  openCart();
 }
 
 function setCategory(cat, btn) {
@@ -142,7 +143,6 @@ function setCategory(cat, btn) {
   renderProducts();
 }
 
-// Tanlangan kilo/donaga qarab kartochka narxini jonli yangilash
 function updateCardPrice(id, unitPrice, unitName) {
   const qtyEl = document.getElementById(`qty-${id}`);
   const priceEl = document.getElementById(`price-display-${id}`);
@@ -162,7 +162,6 @@ function updateCardPrice(id, unitPrice, unitName) {
 function renderProducts() {
   const grid = document.getElementById("productsGrid");
   const search = (document.getElementById("searchInput")?.value || "").toLowerCase();
-  const products = getProducts();
 
   const filtered = products.filter(p => {
     const matchCat = currentCategory === "all" || p.category === currentCategory;
@@ -213,7 +212,7 @@ function renderProducts() {
 }
 
 function addToCart(id) {
-  const prod = getProducts().find(p => p.id === id);
+  const prod = products.find(p => p.id === id);
   if (!prod) return;
 
   const qty = parseFloat(document.getElementById(`qty-${id}`).value);
@@ -237,9 +236,10 @@ function updateCartBadge() {
 }
 
 function toggleAddressFields() {
-  const type = document.getElementById("deliveryType").value;
+  const type = document.getElementById("deliveryType")?.value;
   const addrBlock = document.getElementById("addressBlock");
   const addrInput = document.getElementById("custAddress");
+  if (!addrBlock || !addrInput) return;
   if (type === "Yetkazib berish") {
     addrBlock.style.display = "flex";
     addrInput.required = true;
@@ -305,6 +305,7 @@ function openCart() {
     }).join("");
     totalEl.innerText = `${total.toLocaleString("uz-UZ")} so'm`;
   }
+  prefillCustomerInfo();
   modal.hidden = false;
 }
 
@@ -315,13 +316,18 @@ function submitOrder(e) {
   e.preventDefault();
   if (cart.length === 0) return alert("Avval mahsulot tanlang!");
 
-  const name = document.getElementById("custName").value;
-  const phone = document.getElementById("custPhone").value;
+  const name = document.getElementById("custName").value.trim();
+  const phone = document.getElementById("custPhone").value.trim();
   const delivery = document.getElementById("deliveryType").value;
   const payment = document.getElementById("paymentType").value;
-  const address = document.getElementById("custAddress").value;
+  const address = document.getElementById("custAddress").value.trim();
   const dTime = document.getElementById("deliveryTime").value;
-  const note = document.getElementById("custNote").value;
+  const note = document.getElementById("custNote").value.trim();
+
+  // Keyingi buyurtmalar uchun mijoz ma'lumotlari va mahsulotlarini saqlash
+  localStorage.setItem(LAST_CUSTOMER_KEY, JSON.stringify({ name, phone, delivery, payment, address }));
+  localStorage.setItem(LAST_ORDER_ITEMS_KEY, JSON.stringify(cart));
+  updateRepeatOrderButton();
 
   let total = 0;
   const itemsText = cart.map((i, idx) => {
@@ -405,8 +411,12 @@ function startPromoTimer() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  updateOpenStatus();
+  setInterval(updateOpenStatus, 60000);
   renderProducts();
   renderReviews();
   updateCartBadge();
+  updateRepeatOrderButton();
   startPromoTimer();
+  fetchProductsAndSettingsFromSupabase();
 });
