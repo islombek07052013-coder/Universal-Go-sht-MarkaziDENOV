@@ -142,6 +142,23 @@ function setCategory(cat, btn) {
   renderProducts();
 }
 
+// Tanlangan kilo/donaga qarab kartochka narxini jonli yangilash
+function updateCardPrice(id, unitPrice, unitName) {
+  const qtyEl = document.getElementById(`qty-${id}`);
+  const priceEl = document.getElementById(`price-display-${id}`);
+  const unitEl = document.getElementById(`unit-display-${id}`);
+  if (!qtyEl || !priceEl) return;
+
+  const qty = parseFloat(qtyEl.value);
+  const total = Math.round(unitPrice * qty);
+  priceEl.innerText = `${total.toLocaleString("uz-UZ")} so'm`;
+  if (unitEl) {
+    unitEl.innerText = qty === 1
+      ? `/ 1 ${unitName}`
+      : `/ ${qty} ${unitName} (1 ${unitName}: ${Number(unitPrice).toLocaleString("uz-UZ")})`;
+  }
+}
+
 function renderProducts() {
   const grid = document.getElementById("productsGrid");
   const search = (document.getElementById("searchInput")?.value || "").toLowerCase();
@@ -180,11 +197,11 @@ function renderProducts() {
             <option value="Butun / Tozalangan">📦 Butun / Tozalangan</option>
           </select>
           <div class="prod-price-row">
-            <span class="prod-price">${Number(p.price).toLocaleString("uz-UZ")} so'm</span>
-            <span class="prod-unit">/ 1 ${p.unit}</span>
+            <span class="prod-price" id="price-display-${p.id}">${Number(p.price).toLocaleString("uz-UZ")} so'm</span>
+            <span class="prod-unit" id="unit-display-${p.id}">/ 1 ${p.unit}</span>
           </div>
           <div class="qty-controls">
-            <select id="qty-${p.id}" class="qty-select" ${!p.inStock ? "disabled" : ""}>${qtyOptions}</select>
+            <select id="qty-${p.id}" class="qty-select" onchange="updateCardPrice(${p.id}, ${p.price}, '${p.unit}')" ${!p.inStock ? "disabled" : ""}>${qtyOptions}</select>
             <button class="btn-add-cart" onclick="addToCart(${p.id})" ${!p.inStock ? "disabled" : ""}>
               ${p.inStock ? "+ Savatga" : "Tugagan"}
             </button>
@@ -323,7 +340,6 @@ function submitOrder(e) {
   alert("Buyurtmangiz tayyorlandi!");
 }
 
-// Yulduzli baholash
 const STAR_LABELS = {
   1: "1 yulduz — Yoqmadi",
   2: "2 yulduz — Past",
