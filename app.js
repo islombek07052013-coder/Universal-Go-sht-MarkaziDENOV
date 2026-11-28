@@ -1,6 +1,5 @@
-// Supabase ulanish sozlamalari (Admin paneldagi bilan bir xil)
 const SUPABASE_URL = "https://sissxncuyhlwnnasikfi.supabase.co";
-const SUPABASE_KEY = "PUBLISHABLE_KEY_NI_SHU_YERGA_YOYING"; // Rasmdagi Publishable keyni qo'ying
+const SUPABASE_KEY = "sb_publishable_6IAQPaXyp3hr4lDsWhJK1g_KJb49aGH";
 
 const LAST_CUSTOMER_KEY = "ugm_last_customer";
 const LAST_ORDER_ITEMS_KEY = "ugm_last_order_items";
@@ -40,14 +39,23 @@ let cart = JSON.parse(localStorage.getItem("ugm_cart") || "[]");
 let reviews = JSON.parse(localStorage.getItem("ugm_reviews") || "null") || DEFAULT_REVIEWS;
 
 function hasSupabase() {
-  return SUPABASE_URL.startsWith("https://") && SUPABASE_KEY && !SUPABASE_KEY.includes("SHU_YERGA");
+  return SUPABASE_URL.startsWith("https://") && SUPABASE_KEY && SUPABASE_KEY.length > 10;
 }
 
 function sbHeaders() {
   return {
     "apikey": SUPABASE_KEY,
-    "Authorization": `Bearer ${SUPABASE_KEY}`
+    "Authorization": `Bearer ${SUPABASE_KEY}`,
+    "Content-Type": "application/json"
   };
+}
+
+function applyOpenStatus(isOpen) {
+  const badge = document.getElementById("openStatusBadge");
+  if (!badge) return;
+  badge.classList.toggle("open", isOpen);
+  badge.classList.toggle("closed", !isOpen);
+  badge.innerText = isOpen ? "🟢 Hozir ochiq" : "🔴 Hozir yopiq";
 }
 
 async function fetchProductsAndSettingsFromSupabase() {
@@ -86,25 +94,14 @@ async function fetchProductsAndSettingsFromSupabase() {
         if (promoEl && sRows[0].promo) promoEl.innerText = sRows[0].promo;
         if (timeEl && sRows[0].cut_time) timeEl.innerText = sRows[0].cut_time;
         if (origEl && sRows[0].origin) origEl.innerText = sRows[0].origin;
+        applyOpenStatus(sRows[0].is_open !== false);
       }
     }
   } catch (err) {
-    console.warn("Supabase ma'lumotlari yuklanmadi, lokal nusxa ishlatildi:", err);
+    console.warn("Supabase ma'lumotlari yuklanmadi:", err);
   }
 }
 
-// 4-band: Do'kon ochiq/yopiq holati (07:00 - 22:00)
-function updateOpenStatus() {
-  const badge = document.getElementById("openStatusBadge");
-  if (!badge) return;
-  const hour = new Date().getHours();
-  const isOpen = hour >= 7 && hour < 22;
-  badge.classList.toggle("open", isOpen);
-  badge.classList.toggle("closed", !isOpen);
-  badge.innerText = isOpen ? "🟢 Hozir ochiq" : "🔴 Hozir yopiq";
-}
-
-// 3-band: Oxirgi buyurtma ma'lumotlarini eslab qolish va takrorlash
 function prefillCustomerInfo() {
   const saved = JSON.parse(localStorage.getItem(LAST_CUSTOMER_KEY) || "null");
   if (!saved) return;
@@ -312,7 +309,7 @@ function openCart() {
 function closeCart() { document.getElementById("cartModal").hidden = true; }
 function removeFromCart(i) { cart.splice(i, 1); saveCart(); updateCartBadge(); openCart(); }
 
-function submitOrder(e) {
+async function submitOrder(e) {
   e.preventDefault();
   if (cart.length === 0) return alert("Avval mahsulot tanlang!");
 
@@ -324,26 +321,42 @@ function submitOrder(e) {
   const dTime = document.getElementById("deliveryTime").value;
   const note = document.getElementById("custNote").value.trim();
 
-  // Keyingi buyurtmalar uchun mijoz ma'lumotlari va mahsulotlarini saqlash
   localStorage.setItem(LAST_CUSTOMER_KEY, JSON.stringify({ name, phone, delivery, payment, address }));
   localStorage.setItem(LAST_ORDER_ITEMS_KEY, JSON.stringify(cart));
   updateRepeatOrderButton();
 
   let total = 0;
-  const itemsText = cart.map((i, idx) => {
-    const s = i.price * i.qty;
-    total += s;
-    return `${idx + 1}. ${i.name} (${i.cut}) — ${i.qty} ${i.unit} = ${s.toLocaleString("uz-UZ")} so'm`;
-  }).join("%0A");
+  cart.forEach(i => { total += i.price * i.qty; });
 
-  const msg = `🥩 *YANGI BUYURTMA — UNIVERSAL GO'SHT MARKAZI*%0A%0A👤 *Mijoz:* ${name}%0A📞 *Tel:* ${phone}%0A🚚 *Usul:* ${delivery}%0A💳 *To'lov:* ${payment}%0A📍 *Manzil:* ${address || "Do'kondan olish"}%0A⏱️ *Vaqt:* ${dTime}%0A📝 *Izoh:* ${note || "Yo'q"}%0A%0A🛒 *Mahsulotlar:*%0A${itemsText}%0A%0A💰 *Jami:* ${total.toLocaleString("uz-UZ")} so'm`;
+  if (hasSupabase()) {
+    try {
+      await fetch(`${SUPABASE_URL}/rest/v1/orders`, {
+        method: "POST",
+        headers: sbHeaders(),
+        body: JSON.stringify({
+          id: Date.now(),
+          customer_name: name,
+          customer_phone: phone,
+          delivery_type: delivery,
+          payment_type: payment,
+          address: address || "Do'kondan olish",
+          delivery_time: dTime,
+          note: note || "",
+          items: cart,
+          total_price: Math.round(total),
+          status: "Yangi"
+        })
+      });
+    } catch (err) {
+      console.warn("Buyurtma bazaga yozilmadi:", err);
+    }
+  }
 
-  window.open(`https://t.me/share/url?url=&text=${msg}`, "_blank");
   cart = [];
   saveCart();
   updateCartBadge();
   closeCart();
-  alert("Buyurtmangiz tayyorlandi!");
+  alert("✅ Buyurtmangiz qabul qilindi va Admin panelga yuborildi! Tez orada bog'lanamiz.");
 }
 
 const STAR_LABELS = {
@@ -411,8 +424,7 @@ function startPromoTimer() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  updateOpenStatus();
-  setInterval(updateOpenStatus, 60000);
+  applyOpenStatus(true);
   renderProducts();
   renderReviews();
   updateCartBadge();
